@@ -1,6 +1,5 @@
 const path = require('path');
- 
-
+ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 // ... contents of webpack.config.js
 module.exports = {
@@ -21,7 +20,20 @@ module.exports = {
                     },
                 },
             },
+            {
+                test: /\.(sa|sc|c)ss$/,
+                use: [
+                    MiniCssExtractPlugin.loader,
+                    'css-loader',
+                    'sass-loader',
+                ],
+            },
             // ...additional rules...
         ],
     },
+    plugins: [
+        new MiniCssExtractPlugin({
+            filename: "css/[name].css",
+        }),
+    ],
 };
