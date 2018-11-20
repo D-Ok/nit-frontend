@@ -1,9 +1,14 @@
 $font-stack:    Helvetica, sans-serif;
 $primary-color: #333;
 $allignment: center;
+$main-color: #000080;
 
 body {
   font: 100% $font-stack;
   color: $primary-color;
   text-align: $allignment;
+}
+
+.main-menu{
+	color: $main-color;
 }
