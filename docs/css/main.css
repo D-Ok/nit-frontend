@@ -1,8 +1,37 @@
 body {
   font: 100% Helvetica, sans-serif;
   color: #333;
-  text-align: center; }
+  text-align: center;
+  margin: 0;
+  padding: 0; }
 
 .main-menu {
-  color: #000080; }
+  background-color: #000080;
+  position: fixed;
+  width: 100%;
+  padding: 0;
+  margin: 0; }
+
+.unilogo, .store-title {
+  display: inline; }
+
+.store-name {
+  float: left; }
+
+.unilogo {
+  width: 5%;
+  height: 5%; }
+
+.menu-list li {
+  display: inline;
+  font-size: 30px;
+  font: 100% Helvetica, sans-serif;
+  color: white;
+  padding: 0 20px; }
+  .menu-list li a {
+    text-decoration: none;
+    color: white; }
+
+h1 a {
+  text-decoration: none; }
 

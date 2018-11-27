@@ -3,12 +3,60 @@ $primary-color: #333;
 $allignment: center;
 $main-color: #000080;
 
+
 body {
   font: 100% $font-stack;
   color: $primary-color;
   text-align: $allignment;
+  margin: 0;
+  padding: 0;
 }
 
 .main-menu{
-	color: $main-color;
+	background-color: $main-color;
+	position: fixed;
+	width: 100%;
+	padding: 0;
+	margin: 0;
+}
+
+%menu-element {
+ display: inline;
+ 
+}
+
+.store-name{
+	float: left;
+}
+
+.unilogo{
+@extend %menu-element;
+	width: 5%;
+	height: 5%;
+}
+
+.store-title{
+	@extend %menu-element;
+}
+
+.menu-list{
+	li{
+	display: inline;
+	font-size: 30px;
+ font: 100% $font-stack;
+ color: white;
+ padding: 0 20px;
+ a{
+ text-decoration: none;
+ color: white;
+ }
+	}
+}
+
+
+
+h1{
+	a{
+	text-decoration: none;
+	}
 }
