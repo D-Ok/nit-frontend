@@ -1,15 +1,29 @@
-$font-stack:    Helvetica, sans-serif;
+@font-face {
+	font-family: 'Chakra Petch';
+	font-style: normal;
+	font-weight: 400;
+	src: local('Chakra Petch Regular'), local('ChakraPetch-Regular'), url(https://fonts.gstatic.com/s/chakrapetch/v1/cIf6MapbsEk7TDLdtEz1BwkWn6pg.woff2) format('woff2');
+	unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+	font-family: 'Chakra Petch';
+	font-style: normal;
+	font-weight: 400;
+	src: local('Chakra Petch Regular'), local('ChakraPetch-Regular'), url(https://fonts.gstatic.com/s/chakrapetch/v1/cIf6MapbsEk7TDLdtEz1BwkWkapgeL4.woff2) format('woff2');
+	unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
 $primary-color: #333;
-$allignment: center;
+$alignment: center;
 $main-color: #000080;
 
 
 body {
-  font: 100% $font-stack;
-  color: $primary-color;
-  text-align: $allignment;
-  margin: 0;
-  padding: 0;
+	font-family: 'Chakra Petch', sans-serif;
+	color: $primary-color;
+	text-align: $alignment;
+	box-sizing: border-box;
+	margin: 0;
+
 }
 
 .main-menu{
@@ -18,45 +32,138 @@ body {
 	width: 100%;
 	padding: 0;
 	margin: 0;
+	z-index: 100;
+	height: auto;
+	max-height: 110px;
 }
 
 %menu-element {
- display: inline;
- 
+	font-size: 30px;
 }
 
 .store-name{
+	display: block;
 	float: left;
-}
-
-.unilogo{
-@extend %menu-element;
-	width: 5%;
-	height: 5%;
+	max-height: 120px;
+	/*display: inline-block;
+	vertical-align: center;
+	max-width: 350px;
+	margin-bottom: 10px;
+	overflow: hidden;*/
 }
 
 .store-title{
-	@extend %menu-element;
+	font-family: 'Chakra Petch', sans-serif;
+	display: inline-block;
+	vertical-align: middle;
+	padding-bottom: 5px;
+	font-size: 54px;
+	/*
+	color: mintcream;
+	text-decoration: none;
+	margin-top: 0px;*/
+}
+
+.unilogo{
+	display: inline-block;
+}
+
+.uni-img{
+	width: auto;
+	max-width: 100px;
 }
 
 .menu-list{
+	align-items: center;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: center;
+	justify-content: space-between;
+	padding: 0;
+	margin: 0;
 	li{
-	display: inline;
-	font-size: 30px;
- font: 100% $font-stack;
- color: white;
- padding: 0 20px;
- a{
- text-decoration: none;
- color: white;
- }
+		@extend %menu-element;
+		list-style: none;
+		margin: 0;
+		padding: 0 10px;
+		a{
+			text-decoration: none;
+			color: mintcream;
+			font-family: 'Chakra Petch', sans-serif;
+		}
+	}
+}
+
+.products{
+	padding-top:110px;
+}
+
+.product-title{
+	font-family: 'Chakra Petch', sans-serif;
+}
+
+.product-image{
+	padding: 5px;
+	max-height: 180px;
+	width: auto;
+	object-fit: contain;
+}
+
+.categories-list{
+	display:none;
+}
+
+.categories:hover {
+	display: flex;
+	.categories-list{
+		display: block;
+		z-index: 200;
+	}
+}
+
+.category-item{
+	background: #80bdff;
+	color: darkblue;
+	font-size: 20px;
+	category name{
+		cursor: pointer;
+	}
+}
+
+.sect{
+	display: none;
+}
+
+.sect.active{
+	display: block;
+}
+
+
+@media screen and (max-width:870px){
+	.store-title{
+	 font-size: 30px;
+	}
+	%menu-element {
+		font-size: 18px;
+	}
+}
+@media screen and (max-width:584px){
+	.store-title{
+		font-size: 20px;
+	}
+	.uni-img{
+		max-width: 60px;
+	}
+	%menu-element {
+		font-size: 15px;
+	}
+	.products{
+		padding-top:70px;
 	}
 }
 
 
 
-h1{
-	a{
-	text-decoration: none;
-	}
-}
+
+
