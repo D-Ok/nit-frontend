@@ -4,8 +4,6 @@
 	<link rel="stylesheet" href="./css/main.css">
 	<title>MyShop</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="./js/main.js"></script>
-    <script src="../src/index.js"></script>
 </head>
 <body>
 	<div class="main-menu">
@@ -18,13 +16,10 @@
                     <a href = "#" class = "store-title">Unistore</a>
                 </div>
             </li>
-			<li class = "categories"><a href="#" onclick = "showSection(1);" id = "click-display-categories">Categories</a>
-				<ul class = "categories-list">
-				</ul>
-			</li>
-			<li><a href = "#" onclick = "showSection(2);">Info</a></li>
-			<li><a href="#" onclick = "showSection(3);">Sign up</a></li>
-			<li><a href="#" onclick = "showSection(4);">My profile</a></li>
+			<li class = "categories"><a href="#" onclick = "showSection(1);">Categories</a></li>
+			<li><a href = "#" onclick = "showSection(0);">All products</a></li>
+			<li><a href="#" onclick = "showSection(2);">Info</a></li>
+			<li><a href="#" onclick = "showSection(3);">Cart</a></li>
 			</ul>
 	</div>
     <section id = "products-section" class = "sect active">
@@ -32,10 +27,23 @@
             <div class = "row product-grid"></div>
         </div>
     </section>
-    <section id  = "categories-section" class = "sect"></section>
-    <section id  = "info-section" class = "sect"></section>
-    <section id = "product-view-section" class = "sect"></section>
-    <section id = "cart-section" class = "sect"></section>
-
+    <section id  = "categories-section" class = "sect">
+        <div class = "categories-list" id = "list-of-categories"></div>
+    </section>
+    <section id  = "info-section" class = "sect">
+        <p class = "info-paragraph">Unique goods for unique prices!</p>
+        <img class = "unipic" src="../unipic.png" alt = "Beautiful unicorn encouraging you to buy in our store">
+    </section>
+    <section id = "cart-section" class = "sect">
+        <div class = "container-fluid">
+            <div class = "row cart-products"></div>
+            <div class = "empty-cart">No products yet</div>
+        </div>
+    </section>
+    <section id = "product-view-section" class = "sect">
+            <div class = "product-view"></div>
+    </section>
+    <script src="./js/main.js"></script>
+    <script type="text/javascript" src="./js/functions.js"></script>
 </body>
 </html>
