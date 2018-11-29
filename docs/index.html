@@ -37,7 +37,21 @@
     <section id = "cart-section" class = "sect">
         <div class = "container-fluid">
             <div class = "row cart-products"></div>
+            <span class = "empty-cart active">No products yet</span>
+            <button class = "order-button">Order</button>
+            <div id="myModal" class="modal">
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <label for="uname"><b>Name</b></label>
+                    <input type="text" id = "entered-name" placeholder="Enter Username" name="uname"  required>
+                    <label for="phone"><b>Phone</b></label>
+                    <input type="number" placeholder="Enter Phone Number" name="phone" id = "entered-phone" required>
+                    <label for="email"><b>Email</b></label>
+                    <input type="email" placeholder="Enter Email" name="email" id = "entered-email" required>
+                    <button type="submit" class = "submit-order">Order</button>
+                </div>
 
+            </div>
         </div>
     </section>
     <section id = "product-view-section" class = "sect">

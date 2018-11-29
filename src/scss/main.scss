@@ -191,14 +191,25 @@ body {
 	padding: 2px;
 	margin-bottom: 4px;
   position:relative;
-  height: 350px;
+  height: 380px;
   text-align: center;
+}
+
+.cart-products .card{
+	height: 480px;
 }
 
 .view-product{
   cursor: pointer;
   min-height: 300px;
-  margin-bottom: 10px;
+  //margin-bottom: 10px;
+	margin: 0;
+	text-align: center;
+}
+
+.view-product-container{
+	width: 100%;
+	margin: 0;
 }
 
 .product-description{
@@ -247,7 +258,7 @@ body {
 
 .plus-button, .minus-button{
   min-height: 40px;
-  max-width: 20%;
+  //max-width: 20%;
   display: inline;
   color:mintcream;
   border: none;
@@ -258,9 +269,78 @@ body {
   transition: background 250ms ease-in-out, transform 150ms ease;
 }
 
+.empty-cart{
+	display: none;
+}
+
+.empty-cart.active{
+	display:block;
+	width: 100%;
+	margin-top: 150px;
+	text-align: center;
+}
+
+.order-button{
+	display: none;
+}
+
+.order-button.active{
+	display: flex;
+	width: 100%;
+	text-align: center;
+}
+
+.cart-view-product{
+	min-height: 350px;
+	object-fit: contain;
+}
+
+
+
+
+
+.modal {
+	display: none; /* Hidden by default */
+	position: fixed; /* Stay in place */
+	z-index: 1; /* Sit on top */
+	padding-top: 100px; /* Location of the box */
+	left: 0;
+	top: 0;
+	width: 100%; /* Full width */
+	height: 100%; /* Full height */
+	overflow: auto; /* Enable scroll if needed */
+	background-color: rgb(0,0,0); /* Fallback color */
+	background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+	background-color: #fefefe;
+	margin: auto;
+	padding: 20px;
+	border: 1px solid #888;
+	width: 80%;
+}
+
+.close {
+	color: #aaaaaa;
+	display: block;
+	float: right;
+	font-size: 28px;
+	font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+	color: #000;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+
 @media screen and (max-width:870px){
 	.store-title{
-	 font-size: 30px;
+		font-size: 30px;
 	}
 	%menu-element {
 		font-size: 18px;
@@ -273,6 +353,8 @@ body {
 
 	}
 }
+
+
 @media screen and (max-width:584px){
 	.store-title{
 		font-size: 20px;

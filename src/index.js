@@ -67,8 +67,8 @@ let _addProductForCart = ({
                               price,
                               special_price,
                           }) => {
-    let $product = $(`<div class="card col-xs-12 col-sm-4 col-md-4">`);
-    let $viewcontainer = $(`<a class = "view-product">`);
+    let $product = $(`<div class="card col-xs-12 col-sm-4 col-md-4 incart-product" data-product-id="${id}">`);
+    let $viewcontainer = $(`<a class = "cart-view-product">`);
     $product.append($viewcontainer);
     $viewcontainer.append($(`<img src="${image_url}" alt="${name}" class="img-fluid product-image">`));
     $viewcontainer.append($(`<span class="product-title">`).text(name));
@@ -79,11 +79,11 @@ let _addProductForCart = ({
     else{
         $viewcontainer.append($(`<span class="product-price">`).text(price));
     }
-    $product.append($(`<button class="plus-button">`).text("+"));
-    let $counter = $(`<span class="counter" data-product-id="${id}">`);
+    $product.append($(`<button class="plus-button" data-product-id="${id}">`).text("+"));
+    let $counter = $(`<span class="counter" id ="${id}" data-product-id="${id}">`);
     $counter.append($(`<span class="current-num">`).text("1"));
     $product.append($counter);
-    $product.append($(`<button class="minus-button" >`).text("-"));
+    $product.append($(`<button class="minus-button" data-product-id="${id}">`).text("-"));
     return $product;
 };
 
@@ -121,7 +121,7 @@ function showProductView(id){
             success: function (json) {
                 console.log(json);
                 $('.product-view').append(_addProductForView(json));
-                $(".addToCartBtn").on('click', function(){
+                $(".view-addToCartBtn").on('click', function(){
                     let prId = $(this).attr('data-product-id');
                     appendProductToCart(prId);
                     console.log('Added to cart');
@@ -188,23 +188,78 @@ function showGoodsFromCategory(id) {
 }
 
 function appendProductToCart(id){
+    if(!$("span").is('#'+id)){
     jQuery.ajax({
         url: 'https://nit.tron.net.ua/api/product/' + id,
         method: 'get',
         dataType: 'json',
         success: function (json) {
             $('.cart-products').append(_addProductForCart(json));
+            $('.empty-cart.active').removeClass("active");
+            $('.order-button').addClass("active");
+            $('.plus-button').on('click', function(){
+                let spId = $(this).attr('data-product-id');
+                let cur = $('#'+spId).children().text();
+                console.log(cur);
+                cur++;
+                $('#'+spId).empty();
+                $('#'+spId).append($(`<span class="current-num">`).text(cur));
+            });
+            $('.minus-button').on('click', function(){
+                let spId = $(this).attr('data-product-id');
+                let cur = $('#'+spId).children().text();
+                console.log(cur);
+                cur--;
+                if(cur>=0){
+                $('#'+spId).empty();
+                $('#'+spId).append($(`<span class="current-num">`).text(cur))
+                };
+            })
         },
         error: function (xhr) {
             alert("An error occured: " + xhr.status + " " + xhr.statusText);
         },
     });
+}}
+
+function sendPostRequest(n,p,m){
+    let prods = $(".incart-product");
+    let toOrder="";
+    prods.each(function(){
+        let id = $(this).attr('data-product-id');
+        let num = $('#'+id).children().text();
+        if(num>0){
+            toOrder+="&products["+id+"]="+num;
+        }
+    });
+    if(toOrder!=""){
+    jQuery.ajax({
+        url: 'https://nit.tron.net.ua/api/order/add',
+        method: 'post',
+        data: 'token=8KsylqznhjPNS8wjIfjI&name=' + n + '&email=' + m + '&phone=' +
+            p + ''+toOrder,
+        dataType: 'json',
+        success: function (json) {
+            console.log(json);
+        },
+        error: function(xhr){
+            alert("An error occured: " + xhr.status + " " + xhr.statusText);
+        },
+    });
+    }
+    $(".sect.active").removeClass("active");
+    $("#cart-section").addClass("active");
+    $('.empty-cart').addClass("active");
+    $('.order-button.active').removeClass("active");
+    $('.cart-products').empty();
+    $("#myModal").css('display', 'none');
 }
 
 
 
 
     $(document).ready(function () {
+        displayAllProducts();
         $(".store-name").on('click', function(){
             $(".product-grid").empty();
             displayAllProducts();
@@ -229,13 +284,37 @@ function appendProductToCart(id){
             $(".sect.active").removeClass("active");
             $("#cart-section").addClass("active");
         });
-        $('.category-item').click(function () {
+        $('.category-item').on('click', function () {
             let catId = $(this).attr('data-category-id');
             $(".sect.active").removeClass("active");
             $("#products-section").addClass("active");
             $(".product-grid").empty();
             showGoodsFromCategory(catId);
         });
+        $('.order-button').on('click',  function(){
+           $("#myModal").css('display', 'block');
+
+        });
+        $('.close').on('click', function(){
+            $("#myModal").css('display', 'none');
+        });
+        $('.submit-order').on('click',function () {
+            let enName = $('#entered-name')[0].value;
+            let enPhone = $('#entered-phone')[0].value;
+            let enEmail = $('#entered-email')[0].value;
+            if(enName!=""&&enPhone!=""&&enEmail!=""&&enEmail.includes("@")){
+                //console.log('Wow!');
+                sendPostRequest(enName, enPhone, enEmail);
+            }
+            //console.log(enName);
+
+        })
+        /*window.onclick = function(event) {
+            let modal =  $('.modal');
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }*/
 
 
     });
