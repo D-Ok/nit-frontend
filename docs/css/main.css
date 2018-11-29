@@ -183,7 +183,8 @@ body {
 
 .view-view-product, .text-view-product {
   display: block;
-  max-width: 40%; }
+  margin: 0;
+  text-align: center; }
 
 .view-addToCartBtn {
   position: absolute;
@@ -199,10 +200,12 @@ body {
   float: top; }
 
 .counter {
-  display: inline; }
+  display: inline;
+  min-height: 20px;
+  font-size: 18px; }
 
 .plus-button, .minus-button {
-  min-height: 40px;
+  min-height: 30px;
   display: inline;
   color: mintcream;
   border: none;
@@ -225,13 +228,16 @@ body {
   display: none; }
 
 .order-button.active {
-  display: flex;
+  display: block;
   width: 100%;
   text-align: center; }
 
 .cart-view-product {
   min-height: 350px;
   object-fit: contain; }
+
+#modal-form {
+  width: 80%; }
 
 .modal {
   display: none;
@@ -260,8 +266,7 @@ body {
   background-color: #fefefe;
   margin: auto;
   padding: 20px;
-  border: 1px solid #888;
-  width: 80%; }
+  border: 1px solid #888; }
 
 .close {
   color: #aaaaaa;
@@ -275,6 +280,15 @@ body {
   color: #000;
   text-decoration: none;
   cursor: pointer; }
+
+.submit-order, .order-button {
+  color: mintcream;
+  border: none;
+  background-color: #000080;
+  box-shadow: 2px 5px 10px #000033;
+  cursor: pointer;
+  text-align: center;
+  transition: background 250ms ease-in-out, transform 150ms ease; }
 
 @media screen and (max-width: 870px) {
   .store-title {

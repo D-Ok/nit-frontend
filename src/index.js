@@ -105,6 +105,13 @@ jQuery.ajax({
     dataType: 'json',
     success: function(json){
         json.forEach(category => $('.categories-list').append(_addCategory(category)));
+        $('.category-item').on('click', function () {
+            let catId = $(this).attr('data-category-id');
+            $(".sect.active").removeClass("active");
+            $("#products-section").addClass("active");
+            $(".product-grid").empty();
+            showGoodsFromCategory(catId);
+        });
     },
     error: function(xhr){
         alert("An error occured: " + xhr.status + " " + xhr.statusText);
@@ -283,13 +290,6 @@ function sendPostRequest(n,p,m){
         $(".menu-cart").on('click', function () {
             $(".sect.active").removeClass("active");
             $("#cart-section").addClass("active");
-        });
-        $('.category-item').on('click', function () {
-            let catId = $(this).attr('data-category-id');
-            $(".sect.active").removeClass("active");
-            $("#products-section").addClass("active");
-            $(".product-grid").empty();
-            showGoodsFromCategory(catId);
         });
         $('.order-button').on('click',  function(){
            $("#myModal").css('display', 'block');
