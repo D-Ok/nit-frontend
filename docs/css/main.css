@@ -190,6 +190,21 @@ body {
   max-width: 100%;
   float: top; }
 
+.counter {
+  display: inline; }
+
+.plus-button, .minus-button {
+  min-height: 40px;
+  max-width: 20%;
+  display: inline;
+  color: mintcream;
+  border: none;
+  background-color: #000080;
+  box-shadow: 2px 5px 10px #000033;
+  cursor: pointer;
+  text-align: center;
+  transition: background 250ms ease-in-out, transform 150ms ease; }
+
 @media screen and (max-width: 870px) {
   .store-title {
     font-size: 30px; }

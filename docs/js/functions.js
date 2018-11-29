@@ -1,6 +1,6 @@
 
 
-let chosenProducts = [];
+/*let chosenProducts = [];
 let quantities = [];
 
 var sects = document.getElementsByClassName("sect");
@@ -93,7 +93,7 @@ let _addProductForCart = ({
 };
 
 
-/*function addQuantity(id){
+function addQuantity(id){
     let n = chosenProducts.indexOf(id);
     quantities[n]++;
     let c = $(".counter");
@@ -118,30 +118,9 @@ function minusQuantity(id){
         }
 
     }
-}*/
-
-function appendProductToCart(id){
-    jQuery.ajax({
-        url: 'https://nit.tron.net.ua/api/product/' + id,
-        method: 'get',
-        dataType: 'json',
-        success: function (json) {
-            //console.log('Loaded via AJAX!');
-            //console.log(json);
-            //console.table(json);
-            console.log(!chosenProducts.contains(id));
-            if(!chosenProducts.contains(id)){
-                chosenProducts.add(id);
-                $('.empty-cart').style("display: none");
-                $('.cart-products').append(_addProductForCart(json));
-            }
-            // console.log('Added to grid');
-        },
-        error: function (xhr) {
-            alert("An error occured: " + xhr.status + " " + xhr.statusText);
-        },
-    });
 }
+
+
 
 function showProduct(id){
     jQuery.ajax({
@@ -211,40 +190,10 @@ jQuery.ajax({
     },
 });
 
-jQuery.ajax({
-    url: 'https://nit.tron.net.ua/api/category/list',
-    method: 'get',
-    dataType: 'json',
-    success: function(json){
-        //console.log('Loaded via AJAX!');
-        // console.log(json);
-        // console.table(json);
-        json.forEach(category => $('.categories-list').append(_addCategory(category)));
-        //console.log('Added to categories');
-    },
-    error: function(xhr){
-        alert("An error occured: " + xhr.status + " " + xhr.statusText);
-    },
-});
 
 
-function showGoodsFromCategory(id) {
-    jQuery.ajax({
-        url: 'https://nit.tron.net.ua/api/product/list/category/' + id,
-        method: 'get',
-        dataType: 'json',
-        success: function (json) {
-            console.log('Loaded via AJAX!');
-            // console.log(json);
-            //console.table(json);
-            json.forEach(product => $('.product-grid').append(_addProduct(product)));
-            // console.log('Added to grid');
-        },
-        error: function (xhr) {
-            alert("An error occured: " + xhr.status + " " + xhr.statusText);
-        },
-    });
-}
+
+*/
 
 
 
